@@ -39,7 +39,7 @@ echo.
 echo Press any key to run the script, or close
 echo window to exit.
 pause >nul 2>&1
-echo Resetting Windows Update...
+echo Removing Microsoft Office 365...
 echo.
 
 for /f "skip=3 tokens=1" %%i in ('TASKLIST /FI "USERNAME eq %userdomain%\%username%" /FI "STATUS eq running"') do (
