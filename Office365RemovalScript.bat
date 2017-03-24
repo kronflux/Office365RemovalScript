@@ -5,11 +5,15 @@ setlocal enableextensions
 :: BatchGotAdmin
 :-------------------------------------
 REM  --> Check for permissions
-    IF "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
+IF "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
+IF EXIST "%SYSTEMROOT%\SysWOW64\cacls.exe" (
+IF EXIST "%SYSTEMROOT%\SysWOW64\config\system" (
 >nul 2>&1 "%SYSTEMROOT%\SysWOW64\cacls.exe" "%SYSTEMROOT%\SysWOW64\config\system"
 ) ELSE (
+>nul 2>&1 "%SYSTEMROOT%\SysWOW64\cacls.exe" "%SYSTEMROOT%\System32\config\system"
+)) ELSE (
 >nul 2>&1 "%SYSTEMROOT%\System32\cacls.exe" "%SYSTEMROOT%\System32\config\system"
-)
+))
 
 REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
