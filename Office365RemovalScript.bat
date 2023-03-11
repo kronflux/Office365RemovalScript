@@ -58,9 +58,9 @@ set "processlist=%processlist% skypeserver smarttaginstall spreadsheetcompare sq
 
 :: Kill all tasks in Tasklist that match the above Office process list
 for /f "tokens=1" %%i in (
-'TASKLIST ^|findstr /I /B "%processlist%.exe"'
+'TASKLIST ^|findstr /I /B "%processlist%"'
 ) Do ( 
-    echo TASKKILL /T /IM "%%i" /F >nul 2>&1
+    TASKKILL /T /IM "%%i" /F >nul 2>&1
 )
 
 net stop ose
